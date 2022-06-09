@@ -5,7 +5,7 @@ This repo contains tools to perform Prefetch+Prefetch and Prefetch+Reload.
 For details of these two attacks, please refer to our [Oakland'22 paper](https://yananguo.com/files/oakland22.pdf).
 
 
-##Timing Characterization
+## Timing Characterization
 
 To run these two attacks, we need to know the timing threshold to distinguish different cache events. This includes:
 prefetch_hit_local_L1 and prefetch_hit_remote_L1 for Prefetch+Prefetch,
@@ -16,7 +16,7 @@ These thresholds depend on the microarchitecture details of the processor. We pr
 First, to obtain the threshold for Prefetch+Prefetch, do:
 ```
 cd utils
-sh get_pre_miss_latency.sh
+bash get_pre_miss_latency.sh
 ```
 This script tests the latency of the prefetchw when the target data is in the local/remote L1 cahe 50000 times (for each) and prints out the results.
 
@@ -31,7 +31,7 @@ In the above image, an appropriate timing threshold should be 105-115 cycles (Th
 Similarly, to obtain LLC_S_LATENCY, do:
 ```
 cd utils
-sh get_llc_s_latency.sh
+bash get_llc_s_latency.sh
 ```
 
 Then, pick an appropriate timing theshold based on the printed result.

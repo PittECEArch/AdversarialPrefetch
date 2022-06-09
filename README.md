@@ -60,6 +60,9 @@ TBA.
 ## Processing the results
 TBA.
 
+## Side channel example
+TBA.
+
 ## Contact
 
 For any questions, please open an issue in this repo or email Yanan (yag45@pitt.edu) directly.

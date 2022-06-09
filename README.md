@@ -62,7 +62,7 @@ TBA.
 
 ## Contact
 
-For any questions, please start a pull request or email Yanan (yag45@pitt.edu) directly.
+For any questions, please open an issue in this repo or email Yanan (yag45@pitt.edu) directly.
 
 
 

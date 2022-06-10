@@ -26,9 +26,9 @@ When running this script, you should see something similar with the following im
 </p>
 
 
-In the above image, an appropriate timing threshold should be 105-115 cycles (This will be used in the attack).
+In the above image, an appropriate timing threshold for Prefetch+Prefetch should be 105-115 cycles.
 
-Similarly, to obtain LLC_S_LATENCY, do:
+Similarly, to obtain to get the threshold for Prefetch+Reload, do:
 ```
 cd utils
 bash get_llc_s_latency.sh
@@ -36,7 +36,7 @@ bash get_llc_s_latency.sh
 
 Then, pick an appropriate timing theshold based on the printed result.
 
-Note that, the timing in the above experiment really depends on the physical distance between the "local" and "remote" core. This can be configured in utils/pre_miss_latency.c and utils/llc_s_latency.c.
+Note that, the timing threshold for the attack really depends on the physcical CPU cores the attack is running on. Thus, we should characterize the timing on the cores used in the attacks. This can be configured in utils/pre_miss_latency.c (for Prefetch+Prefetch) and utils/llc_s_latency.c (for Prefetch+Reload).
 
 In utils/pre_miss_latency.c,
 ```

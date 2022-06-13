@@ -28,7 +28,7 @@ void detect_bit(struct config *config, int index, int* result)
             __builtin_prefetch(config->addr, 1, 3);
             asm volatile("mfence");
             t2 = rdtscp();
-            result[index] = ((t2 -t1) > PRE_MISS_LATENCY);
+            result[index] = ((t2 -t1) > PRE_HIT_LATENCY);
         }
         i++;
 	}
@@ -40,20 +40,20 @@ void* receiver_func( void* param)
 	struct config config;
 	init_config(&config);
     int counter = 0;
-    int result[rounds];
+    int result[ROUNDS];
 
     //access config->addr so we can later prefetch
     CYCLES access_time = measure_one_block_access_time(config.addr);
     access_time = measure_one_block_access_time(config.addr);
     access_time = measure_one_block_access_time(config.addr);
 
-	while (counter < rounds) {
+	while (counter < ROUNDS) {
         asm volatile("lfence");
 		detect_bit(&config, counter, result);
         counter ++;
 	}
     
-    for (int a = 0; a < rounds; a++)
+    for (int a = 0; a < ROUNDS; a++)
         printf("%d\n", result[a]);
     
 	printf("Receiver finished\n");

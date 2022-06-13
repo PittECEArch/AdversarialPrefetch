@@ -1,30 +1,31 @@
 # Adversarial Prefetch: New Cross-Core Cache Side-Channel Attacks
 ## Description
 
-This repo contains tools to perform Prefetch+Prefetch and Prefetch+Reload.
-For details of these two attacks, please refer to our [Oakland'22 paper](https://yananguo.com/files/oakland22.pdf).
+This repo contains tools to perform Prefetch+Prefetch and Prefetch+Reload.  For
+details of these two attacks, please refer to our [Oakland'22
+paper](https://yananguo.com/files/oakland22.pdf).
 
 
 ## Timing Characterization
 
-To run these two attacks, we need to know the timing threshold to distinguish different cache events. This includes:
-prefetch_hit_local_L1 and prefetch_hit_remote_L1 for Prefetch+Prefetch,
-load_hit_LLC and load_hit_remote_L1 for Prefetch+Reload.
+To run these two attacks, we must determine the timing threshold to distinguish
+different cache events. This includes: `prefetch_hit_local_L1` and
+`prefetch_hit_remote_L1` for Prefetch+Prefetch, as well as `load_hit_LLC` and
+`load_hit_remote_L1` for Prefetch+Reload.
 
-These thresholds depend on the microarchitecture details of the processor. We provide scripts to find the correct thresholds.
+These thresholds depend on the microarchitecture details of the processor. We
+provide scripts to find the correct thresholds.
 
 First, to obtain the threshold for Prefetch+Prefetch, do:
 ```
 cd utils
 bash get_pre_miss_latency.sh
 ```
-This script tests the latency of the prefetchw when the target data is in the local/remote L1 cahe 50000 times (for each) and prints out the results.
+This script tests the latency of the prefetchw when the target data is in the
+local/remote L1 cahe 50000 times (for each) and prints out the results.
 
 When running this script, you should see something similar with the following image:
-<p>
-<img src="figures/profiling_result.png", height="224", width="224">
-</p>
-
+![Example Profiling Result](/figures/profiling_result.png)
 
 In the above image, an appropriate timing threshold for Prefetch+Prefetch should be 105-115 cycles.
 
@@ -34,9 +35,13 @@ cd utils
 bash get_llc_s_latency.sh
 ```
 
-Then, pick an appropriate timing theshold based on the printed result.
+Then, pick an appropriate timing theshold based on results.
 
-Note that, the timing threshold for the attack really depends on the physcical CPU cores the attack is running on. Thus, we should characterize the timing on the cores used in the attacks. This can be configured in utils/pre_miss_latency.c (for Prefetch+Prefetch) and utils/llc_s_latency.c (for Prefetch+Reload).
+Note that, the timing threshold for the attack really depends on the physcical
+CPU cores the attack is running on. Thus, we should characterize the timing on
+the cores used in the attacks. This can be configured in
+utils/pre_miss_latency.c (for Prefetch+Prefetch) and utils/llc_s_latency.c (for
+Prefetch+Reload).
 
 In utils/pre_miss_latency.c,
 ```
@@ -64,8 +69,5 @@ TBA.
 TBA.
 
 ## Contact
-
-For any questions, please open an issue in this repo or email Yanan (yag45@pitt.edu) directly.
-
-
-
+For any questions, please open an issue in this repo. Or contact Yanan via
+email, which is contained in the paper, linked [above](#Description).

@@ -17,3 +17,11 @@ target_link_libraries (receiver_pre_pre LINK_PUBLIC  ${CMAKE_THREAD_LIBS_INIT} u
 target_link_libraries (receiver_pre_relo LINK_PUBLIC  ${CMAKE_THREAD_LIBS_INIT} util)
 
 set(CMAKE_CXX_FLAGS "-pthread")
+
+
+add_custom_target(copy-test-makefile ALL DEPENDS
+    ${CMAKE_CURRENT_BINARY_DIR}/shared)
+add_custom_command(OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/shared
+    COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_CURRENT_SOURCE_DIR}/../utils/shared
+    ${CMAKE_CURRENT_BINARY_DIR}/bin/
+    DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/../utils/shared)

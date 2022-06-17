@@ -61,11 +61,11 @@ In utils/llc_s_latency.c,
 
 ## Setup and Run the Covert Channels
 
-# Step 1: Parameter configuration
+### Step 1: Parameter configuration
 
 We provide PoC for the covert channels. Before building and running the channel, there are a few parameters that need to be configured accordingly. Please see covert_channels/libs/util.h.
 
-# Step 2: Build the covert channels
+### Step 2: Build the covert channels
 
 To build the covert channels, do
 
@@ -77,7 +77,7 @@ make
 ```
 Then you can find the sender and receiver executables in 'covert_channels/build/bin' directory.
 
-# Step 3: Run the covert chanenls
+### Step 3: Run the covert chanenls
 
 To run a covert channel, first start the sender process
 

@@ -70,7 +70,7 @@ We provide PoC for the covert channels. Before building and running the channel,
 To build the covert channels, do
 
 ```sh
-cd $AdversarialPrefetch_HOME/covert_channels
+cd covert_channels
 mkdir build
 cmake ..
 make
@@ -82,20 +82,20 @@ Then you can find the sender and receiver executables in 'covert_channels/build/
 To run a covert channel, first start the sender process
 
 ```
-cd $AdversarialPrefetch_HOME/covert_channels/build/bin
+cd covert_channels/build/bin
 ./sender 
 
 ```
 This sender process sends "0" and "1" alternatively.
 Then start one of the receiver processes
 ```
-cd $AdversarialPrefetch_HOME/covert_channels/build/bin
+cd covert_channels/build/bin
 ./receiver_pre_pre > raw_bits_received
 ```
 or 
 
 ```
-cd $AdversarialPrefetch_HOME/covert_channels/build/bin
+cd covert_channels/build/bin
 ./receiver_pre_relo > raw_bits_received
 ```
 

@@ -25,7 +25,7 @@ This script tests the latency of the prefetchw when the target data is in the
 local/remote L1 cahe 50000 times (for each) and prints out the results.
 
 When running this script, you should see something similar with the following image:
-![Example Profiling Result](/figures/profiling_result.png)
+![Example Profiling Result](/figures/prefetch_latency.PNG)
 
 In the above image, an appropriate timing threshold for Prefetch+Prefetch should be 105-115 cycles.
 

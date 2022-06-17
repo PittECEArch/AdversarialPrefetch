@@ -1,11 +1,6 @@
 
 #include "util.h"
 
-/*
- * Loads from virtual address addr and measure the access time
- */
-
-
 CYCLES memaccess(ADDR_PTR addr)
 {
     CYCLES rv;
@@ -16,6 +11,9 @@ CYCLES memaccess(ADDR_PTR addr)
 
 
 
+/*
+ * Loads from virtual address addr and measure the access time
+ */
 CYCLES measure_one_block_access_time(ADDR_PTR addr)
 {
     CYCLES cycles;
@@ -55,13 +53,9 @@ inline CYCLES get_time() {
 }
 
 /* Synchronizes at the overflow of a counter
- *
- * Counter is created by masking the lower bits of the Time Stamp Counter
- * Sync done by spinning until the counter is less than CHANNEL_SYNC_JITTER
  */
 extern inline __attribute__((always_inline))
 CYCLES cc_sync() {
-    //while((get_time() & CHANNEL_SYNC_TIMEMASK) > CHANNEL_SYNC_JITTER) {
     while((get_time() % CHANNEL_SYNC_TIMEMASK) > CHANNEL_SYNC_JITTER) {
         }
     return get_time();
@@ -80,11 +74,10 @@ void clflush(ADDR_PTR addr)
 
 
 /*
- * Parses the arguments and flags of the program and initializes the struct config
+ * Initializes the struct config
  */
 void init_config(struct config *config)
 {
-	// Initialize default config parameters
 	int offset = FILE_OFFSET;
 	config->interval = CHANNEL_INTERVAL;
 	char *filename = FILE_NAME;

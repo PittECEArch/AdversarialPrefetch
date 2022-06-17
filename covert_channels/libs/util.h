@@ -24,21 +24,26 @@
 
 
 
-//The following configurations should be changed accordingly.
+//The following parameters should be changed accordingly.
 
-#define sender_core 0
+//The CPU core the sender is running on
+#define sender_core 0 
+//The CPU core the receiver/Spy of Prefetch+Prefetch/Prefetch+Reload is running on
 #define receiver_core 1
-#define receiver_helper_core 2
-
+//The CPU core Trojan in running on
+#define receiver_helper_core 2 
+//The number of rounds the receiver runs
 #define ROUNDS 1000000
-
+//The timing threshold for Prefetch+Prefetch
+//Please see https://github.com/PittECEArch/AdversarialPrefetch#timing-characterization
 #define PRE_HIT_LATENCY 100
+//The timing threshold for Prefetch+Reload
 #define LLC_S_LATENCY 70
-
-#define CHANNEL_INTERVAL                0x000170
-#define CHANNEL_SYNC_TIMEMASK           0x7ff
+//The temporal length of each iteration
+#define CHANNEL_SYNC_TIMEMASK           0x7ff //Each iteration is 2000 cycles 
+#define CHANNEL_INTERVAL                0x0003ff
 #define CHANNEL_SYNC_JITTER             0x100
-
+//The shared data used for data transmission 
 #define FILE_NAME "shared"
 #define FILE_OFFSET	0x0
 #define FILE_SIZE	4096

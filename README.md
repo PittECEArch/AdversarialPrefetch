@@ -59,11 +59,48 @@ In utils/llc_s_latency.c,
 ```
 
 
-## Setup and Build the covert channel
-TBA.
+## Setup and Run the Covert Channels
 
-## Processing the results
-TBA.
+# Step 1: Parameter configuration
+
+We provide PoC for the covert channels. Before building and running the channel, there are a few parameters that need to be configured accordingly. Please see covert_channels/libs/util.h.
+
+# Step 2: Build the covert channels
+
+To build the covert channels, do
+
+```sh
+cd $AdversarialPrefetch_HOME/covert_channels
+mkdir build
+cmake ..
+make
+```
+Then you can find the sender and receiver executables in 'covert_channels/build/bin' directory.
+
+# Step 3: Run the covert chanenls
+
+To run a covert channel, first start the sender process
+
+```
+cd $AdversarialPrefetch_HOME/covert_channels/build/bin
+./sender 
+
+```
+This sender process sends "0" and "1" alternatively.
+Then start one of the receiver processes
+```
+cd $AdversarialPrefetch_HOME/covert_channels/build/bin
+./receiver_pre_pre > raw_bits_received
+```
+or 
+
+```
+cd $AdversarialPrefetch_HOME/covert_channels/build/bin
+./receiver_pre_relo > raw_bits_received
+```
+
+The file "raw_bits_received" will contain the bits the receiver detected.
+
 
 ## Side channel example
 TBA.

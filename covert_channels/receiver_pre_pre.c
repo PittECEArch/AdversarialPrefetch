@@ -8,10 +8,13 @@
 
 /*
  * Detects a bit by measuring the execution time of the prefetchw instruction 
- * for the clock length of config->interval.
+ * within the clock length of config->interval.
  *
  * Detect a bit 1 if the exection time > PRE_MISS_LATENCY
  * Detect a bit 0 otherwise
+ *
+ * Within one iteration, the opereations from sender and receiver are ordered by the amount of rdtscp() each thread runs before the operation.
+ * This is a weak ordering mechanism, and the amount of rdtscp() each threads needs (the value of i) may need to be adjusted on each processor
  */
 
 void detect_bit(struct config *config, int index, int* result)

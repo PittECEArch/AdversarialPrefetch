@@ -8,11 +8,15 @@
 
 /*
  * Detects a bit by measuring the access time of the load from config->addr
- * for the clock length of config->interval.
+ * within the clock length of config->interval.
  *
- * Detect a bit 1 if hits LLC E/M
+ * Detect a bit 1 if hits LLC E/M (remote L1)
  * Detect a bit 0 if hits LLC S
+ *
+ * Within one iteration, the operations from sender, Trojan (receiver_helper), Spy (receiver) are ordered by the amount of rdtscp() each thread runs before the operation.
+ * This is a weak ordering, and the amount of rdtscp() each thread needs (the value of i) may need to be adjusted on each processor.
  */
+
 void detect_bit(struct config *config, int index, int* result)
 {
     int i = 0;
